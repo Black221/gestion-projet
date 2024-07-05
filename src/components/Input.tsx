@@ -1,5 +1,3 @@
-import { useState, Dispatch, SetStateAction } from "react";
-
 interface Props {
   id?: string;
   label: string;
@@ -7,7 +5,7 @@ interface Props {
   floating?: boolean;
   placeholder?: string;
   onChange: (value: any) => void;
-  value: string | number; // Ajout de la propriété value
+  value?: string | number; // Ajout de la propriété value
   className?: string;
 }
 

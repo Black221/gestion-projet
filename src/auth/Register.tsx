@@ -32,12 +32,13 @@ export default function Register() {
       axiosInstance: backend,
       url: "user/register",
       method: "POST",
-      requestConfig: {
-        data: {
+      requestConfig: [
+        {
           email,
           password,
         },
-      },
+      
+      ],
     });
   };
 

@@ -19,7 +19,7 @@ interface Column {
 
 interface Action {
     element: React.ReactElement;
-    onClick: () => void;
+    onClick: (data: any) => void;
 }
 
 interface Color {
@@ -84,9 +84,9 @@ export const Table = ({label, columns, data, actions}: Props) => {
                                     <button className={"uppercase"} onClick={() => sort(c)}>{c.label}</button>
                                 </th>
                             ))}
-                            <th colSpan={actions.length} scope="col" className="px-3 py-3">
+                            {actions.length > 0 && <th colSpan={actions.length} scope="col" className="px-3 py-3">
                                 Actions
-                            </th>
+                            </th>}
                         </tr>
                     </thead>
 
@@ -99,7 +99,7 @@ export const Table = ({label, columns, data, actions}: Props) => {
                                     </th>
                                 ))}
                                 {actions && actions.map((a, index) => (
-                                    <th key={index} scope="col" onClick={a.onClick} className="px-3 py-3 text-light text-blue-400 border-l underline">
+                                    <th key={index} scope="col" onClick={() => a.onClick(d)} className="px-3 py-3 text-light text-blue-400 border-l underline">
                                         {a.element}
                                     </th>
                                 ))}

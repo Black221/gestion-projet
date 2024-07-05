@@ -5,6 +5,7 @@ import Search from "./Search";
 import New from "./New";
 import Stats from "./Stats";
 import Upload from "./Upload";
+import User from "./User";
 
 
 
@@ -16,6 +17,10 @@ export default function Page() {
 
                 <Route path="/" element={
                     <Dashboard />
+                }/>
+
+                <Route path="/:id" element={
+                    <User />
                 }/>
 
                 <Route path="/rechercher" element={

@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
   };
 
   const isLogged = () => {
-    return !!getUser().id;
+    return !!getUser().email;
   };
 
   return (

@@ -5,10 +5,10 @@ import Select from "../../components/Select";
 import { useAuth } from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import backend from "../../api/backend";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function New() {
-  const [name, setName] = useState<string>("");
+  const [firstname, setFirstname] = useState<string>("");
   const [lastname, setLastname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
@@ -23,7 +23,7 @@ export default function New() {
 
     // Vérification des champs
     if (
-      name === "" ||
+      firstname === "" ||
       lastname === "" ||
       email === "" ||
       phone === "" ||
@@ -34,7 +34,7 @@ export default function New() {
     }
 
     const newUser = {
-      name,
+      firstname,
       lastname,
       email,
       phone,
@@ -46,21 +46,18 @@ export default function New() {
       axiosInstance: backend,
       url: "user/register",
       method: "POST",
-      requestConfig: {
-        data: newUser,
-      },
+      requestConfig: [
+        newUser
+      ]
     });
   };
 
   useEffect(() => {
     if (response) {
-      setMessage("");
-      login({
-        id: response.id,
-        email: response.email,
-        role: response.role,
-      });
-      navigate("/app");
+      setMessage("Utilisateur enregistrer avec success");
+      setFirstname("");
+      setEmail("");
+      setPhone("");
     } else if (error) {
       setMessage("Erreur lors de l'inscription. Veuillez réessayer.");
       console.log("Error:", error);
@@ -74,7 +71,7 @@ export default function New() {
           Ajouter un utilisateur
         </div>
         <div>
-          <Button label={<a href="utilisateurs/upload">Upload</a>} />
+          <Button label={<a href="upload">Upload</a>} />
         </div>
       </div>
 
@@ -83,8 +80,8 @@ export default function New() {
         <Input
           id="name"
           label="Nom"
-          value={name}
-          onChange={setName}
+          value={firstname}
+          onChange={setFirstname}
           className="text-sm font-medium"
         />
         <Input

@@ -48,6 +48,7 @@ export default function Login() {
       setMessage("Veuillez remplir les infos correctes");
       console.log(error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response, error]);
 
   return (
@@ -71,12 +72,14 @@ export default function Login() {
 
               <div className="space-y-6 ">
                 <Input
+                  value={email}
                   label="Email"
                   type="text"
                   onChange={setEmail}
                   id="email"
                 />
                 <Input
+                  value={password}
                   label="Mot de passe"
                   type="password"
                   onChange={setPassword}
@@ -85,6 +88,7 @@ export default function Login() {
                 <Button
                   className="w-full mt-4 font-semibold"
                   onClick={() => {}}
+                  type="submit"
                   label={
                     loading ? (
                       <>
@@ -129,18 +133,3 @@ export default function Login() {
     </>
   );
 }
-
-const USERS_TEST = [
-  {
-    id: "1",
-    email: "admin@gmail.com",
-    password: "admin",
-    role: "admin",
-  },
-  {
-    id: "2",
-    email: "user@gmail.com",
-    password: "user",
-    role: "user",
-  },
-];
